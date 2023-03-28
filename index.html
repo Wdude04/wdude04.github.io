@@ -1,9 +1,50 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Come back later!</title>
-    </head>
-    <body style="background-color:rgb(35, 37, 37);">
-        <h1 style="color:white;">Website in development, please come back later.</h1>
-    </body>
-</html>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet"> 
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Space Mono', monospace;
+        }
+            
+    </style>
+</head>
+<body>
+    <div id="main">
+        
+    </div>
+    <script>
+        main = document.getElementById("main")
+        var i = 0;
+        var cursor_filled = false
+        var txt = 'Stay tuned...\n_';
+        var speed = 50;
+
+        function typeWriter() {
+            if (i < txt.length) {
+                main.innerHTML += txt.charAt(i);
+                if (txt.charAt(i) == "\n") {
+                    main.appendChild(document.createElement("br"))
+                }
+                i++;
+                setTimeout(typeWriter, speed);
+            }
+        }
+
+        function cursor() {
+            if (cursor_filled) {
+                main.innerHTML = main.innerHTML.replace("█","_")
+            } else {
+                main.innerHTML = main.innerHTML.replace("_","█")
+            }
+            cursor_filled = !cursor_filled
+        }
+        
+        setInterval(cursor, speed*5)
+
+        typeWriter()
+    </script>
+</body>
